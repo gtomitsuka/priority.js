@@ -1,25 +1,26 @@
 {
-  "name": "module-name",
-  "version": "10.3.1",
-  "description": "An example module to illustrate the usage of a package.json",
-  "author": "Your Name <you.name@example.org>",
-  "scripts": {
-    "test": "",
-    "start": "node index.js",
-  },
+  "name": "priority.js",
+  "version": "1.0.0",
+  "description": "A Priority Queue Manager for Node.js",
   "main": "index.js",
+  "scripts": {
+    "test": "make all"
+  },
   "repository": {
-  "type": "git",
-  "url": "https://github.com/gtomitsuka/priority.js"
-},
-  "bugs": {
-  "url": "https://github.com/gtomitsuka/priority.js/issues"
-},
+    "type": "git",
+    "url": "https://github.com/gtomitsuka/priority.js.git"
+  },
   "keywords": [
-  "priority",
-  "queue"
-],
-  "preferGlobal": false,
-  "private": false,
-  "license": "MIT"
+    "priority",
+    "queue",
+    "stack",
+    "data",
+    "map"
+  ],
+  "author": "gtomitsuka",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gtomitsuka/priority.js/issues"
+  },
+  "homepage": "https://github.com/gtomitsuka/priority.js"
 }
