@@ -1,6 +1,6 @@
 {
   "name": "priority.js",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A Priority Queue Manager for Node.js",
   "main": "index.js",
   "scripts": {
