@@ -5,7 +5,7 @@ var EventEmitter = require('events'); //For emmiting events
 var priority = new EventEmitter();
 var util = require('util');
 
-function Priority(initial) {
+function Priority(initial, sort) {
 	
 	var queue = [];
 	var self = this;
@@ -14,18 +14,21 @@ function Priority(initial) {
 	this.on('queue', function(object){ queue.push(object) });
 	this.size = function(){ return queue.length()};
 	
-	var first = queue.sort(compare)[0];
-	self.emit('dequeue', first);
-	queue.shift();
 	
 	this.on('dequeueRequest', function(){
-		var next = queue.sort(compare)[0];
+		if(sort == "ascending")
+			var next = queue.sort(compareAscending)[0];
+		else if(sort == "descending")
+			var next = queue.sort(compareDescending)[0];
+		else
+			self.emit('error', new Error("Invalid array sorting type"));
+			
 		self.emit('dequeue', next);
 		queue.shift();
 	});
 }
 
-function compare(a,b) {
+function compareDescending(a, b) {
   if (a.priority < b.priority)
      return -1;
   if (a.priority > b.priority)
@@ -33,4 +36,13 @@ function compare(a,b) {
   return 0;
 }
 
+function compareAscending(a, b) {
+  if (a.priority < b.priority)
+     return 1;
+  if (a.priority > b.priority)
+    return -1;
+  return 0;
+}
+
+util.inherits(Priority, EventEmitter);
 module.exports = Priority;
