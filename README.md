@@ -19,9 +19,13 @@ var Priority = require('priority.js') //Import the module
 console.log(queue.size) //2
 
 queue.on('dequeue', function(object){ //On this listener, the object gets automatically dequeued.
-    console.log(queue.size); //1
-    queue.emit('queue', {name: "Mark", priority: 3});
-    queue.emit('queue', {name: "Alexander", priority: 5});
-    console.log(queue.size); //3
-}); //Note: This sample code is an infinite loop.
+    console.log(queue.size) //1
+    queue.emit('queue', {name: "Mark", priority: 3})
+    queue.emit('queue', {name: "Alexander", priority: 5})
+    console.log(queue.size) //3
+}) //Note: This sample code is an infinite loop.
+
+queue.on('error', function(error){
+    console.error(error)
+})
 ```
