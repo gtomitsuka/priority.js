@@ -1,3 +1,7 @@
+/* priority.js - heap.js
+ * Thanks to Marijn Haverbeke for the help regarding binary heaps.
+ */
+
 function BinaryHeap(scoreFunction){
   this.content = [];
   this.scoreFunction = scoreFunction;
