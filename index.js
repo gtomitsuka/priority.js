@@ -1,7 +1,7 @@
 /* priority.js - index.js
  */
 
-var EventEmitter = require('events').EventEmitter; //For emmiting events
+var EventEmitter = require('events'); //For emmiting events
 var priority = new EventEmitter();
 var util = require('util');
 
