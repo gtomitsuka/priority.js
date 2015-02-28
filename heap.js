@@ -1,5 +1,7 @@
 /* priority.js - heap.js
- * Thanks to Marijn Haverbeke for the help regarding binary heaps.
+ * Thanks to Marijn Haverbeke for the his amazing article on Binary Heaps:
+ * http://eloquentjavascript.net/1st_edition/appendix2.html
+ * LICENSE: CC BY 3.0
  */
 
 function BinaryHeap(scoreFunction){
