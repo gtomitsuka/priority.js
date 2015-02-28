@@ -4,10 +4,11 @@
 var EventEmitter = require('events'); //For emmiting events
 var priority = new EventEmitter();
 var util = require('util');
+var BinaryHeap = require('./heap');
 
 function Priority(initial, sort) {
 	
-	var queue = [];
+	var queue = new BinaryHeap();
 	var self = this;
 	queue = initial; //On start, the queue will be the initial values
 	
