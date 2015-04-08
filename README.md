@@ -4,10 +4,11 @@ Simple priority queue module for Node.js.
 
 **NOTE 1:** This module is in development, not production-ready. It was developed for `montreus-swc`, but will probably be also used in [Oratio.io](http://www.oratio.io).
 
-**NOTE 2:** Version 2.x will have mayor changes and won't have background compatibility. Please make sure you'll 
-## Installation
+**NOTE 2:** Version 2.x will have mayor changes and won't have background compatibility.
 
 **NOTE 3:** Version 2.x requires Node.js v0.11.6+, because it uses Generators.
+
+## Installation
 
     npm install priority.js
 
