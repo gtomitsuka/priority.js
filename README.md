@@ -2,7 +2,12 @@
 
 Simple priority queue module for Node.js.
 
+**NOTE 1:** This module is in development, not production-ready. It was developed for `montreus-swc`, but will probably be also used in [Oratio.io](http://www.oratio.io).
+
+**NOTE 2:** Version 2.x will have mayor changes and won't have background compatibility. Please make sure you'll 
 ## Installation
+
+**NOTE 3:** Version 2.x requires Node.js v0.11.6+, because it uses Generators.
 
     npm install priority.js
 
@@ -13,19 +18,23 @@ Currently, there's only a NPM module available.
 `priority.js` uses Event Listeners. Like this:
 
 ``` javascript
-var Priority = require('priority.js') //Import the module
-,   queue = new Priority([{name: "Leonard", priority: 1}, {name: "Justin", priority: 7}], "descending")
+var PriorityQueue = require('priority.js') //Import the module
+
+// You can add whatever properties you like to the objects. Just don't forget to add a priority property.
+var queue = new PriorityQueue([{name: "Read Books", priority: 1}, {name: "Learn JavaScript", priority: 7}], "descending")
+
+//Or, if having priority as a property is inconvinient, you can do this:
+//PriorityQueue.priorityProperty = "myPriorityPropertyName"
 
 console.log(queue.size) //2
 
+queue.next();
 queue.on('dequeue', function(object){ //On this listener, the object gets automatically dequeued.
-    console.log(queue.size) //1
-    queue.emit('queue', {name: "Mark", priority: 3})
-    queue.emit('queue', {name: "Alexander", priority: 5})
-    console.log(queue.size) //3
-}) //Note: This sample code is an infinite loop.
+    console.log(JSON.stringify(object)) //'{"name":"Read Books","priority":1}'
+});
 
-queue.on('error', function(error){
-    console.error(error)
-})
+queue.enqueue({name: "Watch a Movie", priority: 3})
+queue.enqueue{name: "Go back to Work", priority: 10})
+
+queue.next();
 ```
