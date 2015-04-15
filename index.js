@@ -4,14 +4,14 @@
 
 function PriorityQueue(initial, sort) {
 	var Queue = [];
-	this.prototype.priorityProperty = 'priority'; //Later changeable
-	this.prototype.length = Queue.length;
-	this.prototype.sort = sort;
+	this.priorityProperty = 'priority'; //Later changeable
+	this.length = Queue.length;
+	this.sort = sort;
 	this.prototype.enqueue = function(item){
 		Queue.push(item);
 	}
 	this.prototype.dequeue = function(){
-		Queue.sort(dynamicSort(this.prototype.priorityProperty));
+		Queue.sort(dynamicSort(this.priorityProperty));
 	}
 }
 
