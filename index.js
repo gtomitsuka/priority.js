@@ -19,6 +19,8 @@ PriorityQueue.prototype.dequeue = function(){
 	Queue.sort(dynamicSort(this.priorityProperty));
 }
 
+PriorityQueue.prototype.length = 
+
 function QueueIterator(queue){
   this.queue = queue;
 }
