@@ -29,13 +29,11 @@ var queue = new PriorityQueue([{name: "Read Books", priority: 1}, {name: "Learn 
 
 console.log(queue.size) //2
 
-queue.next();
-queue.on('dequeue', function(object){ //On this listener, the object gets automatically dequeued.
-    console.log(JSON.stringify(object)) //'{"name":"Read Books","priority":1}'
-});
+var object = queue.next();
+console.log(JSON.stringify(object)) //'{"name":"Read Books","priority":1}'
 
 queue.enqueue({name: "Watch a Movie", priority: 3})
 queue.enqueue{name: "Go back to Work", priority: 10})
 
-queue.next();
+var object = queue.next();
 ```
