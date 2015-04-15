@@ -3,15 +3,15 @@
  */
 
 function PriorityQueue(initial, sort) {
-	this.Queue = [];
+	Queue = [];
 	this.priorityProperty = 'priority'; //Later changeable
 	this.length = this.Queue.length;
 	this.sort = sort;
 	this.enqueue = function(item){
-		this.Queue.push(item);
+		Queue.push(item);
 	}
 	this.dequeue = function(){
-		this.Queue.sort(dynamicSort(this.priorityProperty));
+		Queue.sort(dynamicSort(this.priorityProperty));
 	}
 }
 
