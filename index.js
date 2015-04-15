@@ -1,48 +1,45 @@
 /* priority.js - index.js
+ * Open-source! Developed by gtomitsuka.
  */
 
-var EventEmitter = require('events'); //For emmiting events
-var priority = new EventEmitter();
-var util = require('util');
-
-function Priority(initial, sort) {
-	
-	var queue = [];
-	var self = this;
-	queue = initial; //On start, the queue will be the initial values
-	
-	this.on('queue', function(object){ queue.push(object) });
-	this.size = function(){ return queue.length()};
-	
-	
-	this.on('dequeueRequest', function(){
-		if(sort == "ascending")
-			var next = queue.sort(compareAscending)[0];
-		else if(sort == "descending")
-			var next = queue.sort(compareDescending)[0];
-		else
-			self.emit('error', new Error("Invalid array sorting type"));
-			
-		self.emit('dequeue', next);
-		queue.shift();
-	});
+function PriorityQueue(initial, sort) {
+	var Queue = [];
+	this.prototype.priorityProperty = 'priority'; //Later changeable
+	this.prototype.length = Queue.length;
+	this.prototype.sort = sort;
+	this.prototype.enqueue = function(item){
+		Queue.push(item);
+	}
+	this.prototype.dequeue = function(){
+		Queue.sort(dynamicSort(this.prototype.priorityProperty));
+	}
 }
 
-function compareDescending(a, b) {
-  if (a.priority < b.priority)
-     return -1;
-  if (a.priority > b.priority)
-    return 1;
-  return 0;
+PriorityQueue.prototype.__iterator__ = function(){
+  return new QueueIterator(this);
+};
+
+function QueueIterator(queue){
+  this.queue = queue;
 }
 
-function compareAscending(a, b) {
-  if (a.priority < b.priority)
-     return 1;
-  if (a.priority > b.priority)
-    return -1;
-  return 0;
-}
+QueueIterator.prototype.next = function(){
+  if (this.current > this.queue.length)
+    throw StopIteration;
+  else
+    return this.queue.dequeue;
+};
 
-util.inherits(Priority, EventEmitter);
-module.exports = Priority;
+//Util Methods
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+module.exports = PriorityQueue;
