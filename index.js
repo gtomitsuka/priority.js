@@ -13,8 +13,8 @@ PriorityQueue.prototype.__iterator__ = function(){
   return new QueueIterator(this);
 };
 PriorityQueue.prototype.enqueue = function(item){
-		Queue.push(item);
-	}
+	Queue.push(item);
+}
 PriorityQueue.prototype.dequeue = function(){
 	Queue.sort(dynamicSort(this.priorityProperty));
 }
