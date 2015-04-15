@@ -7,17 +7,17 @@ function PriorityQueue(initial, sort) {
 	this.priorityProperty = 'priority'; //Later changeable
 	this.length = Queue.length;
 	this.sort = sort;
-	this.prototype.enqueue = function(item){
-		Queue.push(item);
-	}
-	this.prototype.dequeue = function(){
-		Queue.sort(dynamicSort(this.priorityProperty));
-	}
 }
 
 PriorityQueue.prototype.__iterator__ = function(){
   return new QueueIterator(this);
 };
+PriorityQueue.prototype.enqueue = function(item){
+		Queue.push(item);
+	}
+PriorityQueue.prototype.dequeue = function(){
+	Queue.sort(dynamicSort(this.priorityProperty));
+}
 
 function QueueIterator(queue){
   this.queue = queue;
