@@ -16,7 +16,16 @@ PriorityQueue.prototype.enqueue = function(item){
 	this._queue.push(item);
 }
 PriorityQueue.prototype.dequeue = function(){
-	this._queue.sort(dynamicSort(this.priorityProperty));
+  var _sortFunction;
+	if(typeof this.sort === 'string'){
+	  var _priorityProperty = this.sort === 'descending' ? '-' + this.priorityProperty : this.priorityProperty;
+	  _sortFunction = dynamicSort(_priorityProperty);
+	}else if(typeof this.sort === 'function'){
+		_sortFunction = this.sort;
+	}else{
+	  throw new Error('Invalid data type for queue.type property.');
+	}
+	this._queue.sort(_sortFunction);
 	return this._queue.shift();
 }
 
