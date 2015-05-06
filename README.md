@@ -29,11 +29,11 @@ var queue = new PriorityQueue([{name: "Read Books", priority: 1}, {name: "Learn 
 
 console.log(queue.size) //2
 
-var object = queue.next();
+var object = queue.dequeue();
 console.log(JSON.stringify(object)) //'{"name":"Read Books","priority":1}'
 
 queue.enqueue({name: "Watch a Movie", priority: 3})
 queue.enqueue{name: "Go back to Work", priority: 10})
 
-var object = queue.next();
+var object = queue.dequeue();
 ```
