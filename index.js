@@ -15,7 +15,7 @@ PriorityQueue.prototype.__iterator__ = function(){
 PriorityQueue.prototype.enqueue = function(item){
 	this._queue.push(item);
 }
-PriorityQueue.prototype.dequeue = function *(){
+PriorityQueue.prototype.dequeue = function* (){
 	this._queue.sort(dynamicSort(this.priorityProperty));
 	yield this._queue.shift();
 }
