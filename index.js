@@ -6,7 +6,7 @@ function PriorityQueue(initial) {
 	this._queue = initial || [];
 	this.priorityProperty = 'priority'; //Later changeable
 	this.length = this._queue.length;
-	this.sort = sort;
+	this.sort = 'descending';
 }
 
 PriorityQueue.prototype.__iterator__ = function(){
