@@ -24,10 +24,10 @@ queue.sort = 'descending'; //Options: 'ascending', 'descending', or your own sor
 
 console.log(queue.length) //2
 
-console.log(queue.dequeue()) //'{"name":"Read Books","priority":1}'
+console.log(queue.dequeue()) //{ name: 'Learn JavaScript', priority: 7 }
 
 queue.enqueue({name: "Watch a Movie", priority: 3})
 queue.enqueue({name: "Go back to Work", priority: 10})
 
-console.log(queue.dequeue());
+console.log(queue.dequeue()); //{ name: 'Go back to Work', priority: 10 }
 ```
