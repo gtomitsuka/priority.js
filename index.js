@@ -2,8 +2,8 @@
  * Open-source! Developed by gtomitsuka.
  */
 
-function PriorityQueue(initial, sort) {
-	this._queue = [];
+function PriorityQueue(initial) {
+	this._queue = initial || [];
 	this.priorityProperty = 'priority'; //Later changeable
 	this.length = this._queue.length;
 	this.sort = sort;
