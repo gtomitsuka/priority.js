@@ -1,9 +1,8 @@
-var assert = require("assert")
-describe('Array', function(){
-  describe('#indexOf()', function(){
-    it('should return -1 when the value is not present', function(){
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    })
+var assert = require("assert");
+var PriorityQueue = require('priority.js');
+describe('PriorityQueue', function(){
+  //TO DO: Add more tests
+  it('should be able to create a new queue with an array as an argument', function(){
+    assert(new PriorityQueue([{something: 'test', priority: 10}]))
   })
 })
