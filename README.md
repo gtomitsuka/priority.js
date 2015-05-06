@@ -16,8 +16,6 @@ Currently, there's only a NPM module available.
 
 ## Quick-start Guide
 
-`priority.js` uses Event Listeners. Like this:
-
 ``` javascript
 var PriorityQueue = require('priority.js') //Import the module
 
@@ -29,11 +27,10 @@ var queue = new PriorityQueue([{name: "Read Books", priority: 1}, {name: "Learn 
 
 console.log(queue.size) //2
 
-var object = queue.dequeue();
-console.log(JSON.stringify(object)) //'{"name":"Read Books","priority":1}'
+console.log(queue.dequeue()) //'{"name":"Read Books","priority":1}'
 
 queue.enqueue({name: "Watch a Movie", priority: 3})
-queue.enqueue{name: "Go back to Work", priority: 10})
+queue.enqueue({name: "Go back to Work", priority: 10})
 
-var object = queue.dequeue();
+console.log(queue.dequeue());
 ```
