@@ -2,11 +2,7 @@
 
 Simple priority queue module for Node.js.
 
-**NOTE 1:** This module is in development, not production-ready. It was developed for `montreus-swc`, but will probably be also used in [Oratio.io](http://www.oratio.io).
-
-**NOTE 2:** Version 2.x will have mayor changes and won't have background compatibility.
-
-**NOTE 3:** Version 2.x requires Node.js v0.11.6+, because it uses Generators.
+**NOTE:** Version 2.x has mayor changes and won't have background compatibility.
 
 ## Installation
 
@@ -20,12 +16,13 @@ Currently, there's only a NPM module available.
 var PriorityQueue = require('priority.js') //Import the module
 
 // You can add whatever properties you like to the objects. Just don't forget to add a priority property.
-var queue = new PriorityQueue([{name: "Read Books", priority: 1}, {name: "Learn JavaScript", priority: 7}], "descending")
+var queue = new PriorityQueue([{name: "Read Books", priority: 1}, {name: "Learn JavaScript", priority: 7}])
 
-//Or, if having priority as a property is inconvinient, you can do this:
-//PriorityQueue.priorityProperty = "myPriorityPropertyName"
+//Or, if having "priority" as your priority property is inconvinient, you can do this:
+//queue.priorityProperty = "myPriorityPropertyName";
+queue.sort = 'descending'; //Options: 'ascending', 'descending', or your own sorting function
 
-console.log(queue.size) //2
+console.log(queue.length) //2
 
 console.log(queue.dequeue()) //'{"name":"Read Books","priority":1}'
 
