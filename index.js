@@ -1,48 +1,55 @@
 /* priority.js - index.js
+ * Open-source! Developed by gtomitsuka.
  */
 
-var EventEmitter = require('events'); //For emmiting events
-var priority = new EventEmitter();
-var util = require('util');
-
-function Priority(initial, sort) {
-	
-	var queue = [];
-	var self = this;
-	queue = initial; //On start, the queue will be the initial values
-	
-	this.on('queue', function(object){ queue.push(object) });
-	this.size = function(){ return queue.length()};
-	
-	
-	this.on('dequeueRequest', function(){
-		if(sort == "ascending")
-			var next = queue.sort(compareAscending)[0];
-		else if(sort == "descending")
-			var next = queue.sort(compareDescending)[0];
-		else
-			self.emit('error', new Error("Invalid array sorting type"));
-			
-		self.emit('dequeue', next);
-		queue.shift();
-	});
+function PriorityQueue(initial) {
+	this._queue = initial || [];
+	this.priorityProperty = 'priority'; //Later changeable
+	this.length = this._queue.length;
+	this.sort = 'descending';
 }
 
-function compareDescending(a, b) {
-  if (a.priority < b.priority)
-     return -1;
-  if (a.priority > b.priority)
-    return 1;
-  return 0;
+PriorityQueue.prototype.__iterator__ = function(){
+  return new QueueIterator(this);
+}
+PriorityQueue.prototype.enqueue = function(item){
+	this._queue.push(item);
+}
+PriorityQueue.prototype.dequeue = function(){
+  var _sortFunction;
+	if(typeof this.sort === 'string'){
+	  var _priorityProperty = this.sort === 'descending' ? '-' + this.priorityProperty : this.priorityProperty;
+	  _sortFunction = dynamicSort(_priorityProperty);
+	}else if(typeof this.sort === 'function'){
+		_sortFunction = this.sort;
+	}else{
+	  throw new Error('Invalid data type for queue.type property.');
+	}
+	this._queue.sort(_sortFunction);
+	return this._queue.shift();
 }
 
-function compareAscending(a, b) {
-  if (a.priority < b.priority)
-     return 1;
-  if (a.priority > b.priority)
-    return -1;
-  return 0;
+function QueueIterator(queue){
+  this.queue = queue;
 }
 
-util.inherits(Priority, EventEmitter);
-module.exports = Priority;
+QueueIterator.prototype.next = function(){
+  if (this.current > this.queue.length)
+    throw StopIteration;
+  else
+    return this.queue.dequeue;
+};
+
+//Util Methods
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+module.exports = PriorityQueue;

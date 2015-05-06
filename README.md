@@ -2,6 +2,8 @@
 
 Simple priority queue module for Node.js.
 
+**NOTE:** Version 2.x has mayor changes and won't have background compatibility.
+
 ## Installation
 
     npm install priority.js
@@ -10,22 +12,22 @@ Currently, there's only a NPM module available.
 
 ## Quick-start Guide
 
-`priority.js` uses Event Listeners. Like this:
-
 ``` javascript
-var Priority = require('priority.js') //Import the module
-,   queue = new Priority([{name: "Leonard", priority: 1}, {name: "Justin", priority: 7}], "descending")
+var PriorityQueue = require('priority.js') //Import the module
 
-console.log(queue.size) //2
+// You can add whatever properties you like to the objects. Just don't forget to add a priority property.
+var queue = new PriorityQueue([{name: "Read Books", priority: 1}, {name: "Learn JavaScript", priority: 7}])
 
-queue.on('dequeue', function(object){ //On this listener, the object gets automatically dequeued.
-    console.log(queue.size) //1
-    queue.emit('queue', {name: "Mark", priority: 3})
-    queue.emit('queue', {name: "Alexander", priority: 5})
-    console.log(queue.size) //3
-}) //Note: This sample code is an infinite loop.
+//Or, if having "priority" as your priority property is inconvinient, you can do this:
+//queue.priorityProperty = "myPriorityPropertyName";
+queue.sort = 'descending'; //Options: 'ascending', 'descending', or your own sorting function
 
-queue.on('error', function(error){
-    console.error(error)
-})
+console.log(queue.length) //2
+
+console.log(queue.dequeue()) //{ name: 'Learn JavaScript', priority: 7 }
+
+queue.enqueue({name: "Watch a Movie", priority: 3})
+queue.enqueue({name: "Go back to Work", priority: 10})
+
+console.log(queue.dequeue()); //{ name: 'Go back to Work', priority: 10 }
 ```
