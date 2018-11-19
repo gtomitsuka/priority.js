@@ -1,3 +1,0 @@
-// lmfao
-function () {
-}
